@@ -1,0 +1,23 @@
+{
+  "name": "widget-manager",
+  "version": "1.0.0",
+  "description": "",
+  "main": "js/index.js",
+  "scripts": {
+    "start": "http-server-spa . html/index.html",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nitsansoffair/widget-manager.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nitsansoffair/widget-manager/issues"
+  },
+  "homepage": "https://github.com/nitsansoffair/widget-manager#readme",
+  "dependencies": {
+    "http-server-spa": "^1.3.0"
+  }
+}
