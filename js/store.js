@@ -15,6 +15,8 @@ class Store {
         localStorage.setItem((this.id++).toString(), widget.toString());
     }
 
+    fetchAll(){}
+
     fetch(id){}
 
     edit(id){}
