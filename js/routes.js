@@ -22,7 +22,7 @@ const routes = [
                     </tr>
                   </tbody>
             </table>
-            <button onclick="routes.loadRoute('edit')">Add Widget</button>
+            <button onclick="router.loadRoute('add')">Add Widget</button>
         `
     },
     {
@@ -85,8 +85,57 @@ const routes = [
                         <button>-</button>
                     </li>
                 </ol>
-                <button>Cancel</button>
+                <button onclick="router.loadRoute('')">Cancel</button>
                 <button>Save</button>
 `
+    },
+    {
+        path: '/add',
+        template: `
+                <h1>Add Widget</h1>
+                <p>
+                    <span>Name</span>
+                    <input type="text" class="text"/>
+                </p>
+                    <p>
+                    <span>Number</span>
+                    <input type="text" class="text"/>
+                </p>
+                <h3>Key/Value Pairs</h3>
+                <ol>
+                    <li>
+                        <input type="text" class="text"/>
+                        <input type="text" class="text"/>
+                        <button>+</button>
+                        <button>-</button>
+                    </li>
+                    <li>
+                        <input type="text" class="text"/>
+                        <input type="text" class="text"/>
+                        <button>+</button>
+                        <button>-</button>
+                    </li>
+                    <li>
+                        <input type="text" class="text"/>
+                        <input type="text" class="text"/>
+                        <button>+</button>
+                        <button>-</button>
+                    </li>
+                    <li>
+                        <input type="text" class="text"/>
+                        <input type="text" class="text"/>
+                        <button>+</button>
+                        <button>-</button>
+                    </li>
+                    <li>
+                        <input type="text" class="text"/>
+                        <input type="text" class="text"/>
+                        <button>+</button>
+                        <button>-</button>
+                    </li>
+                </ol>
+                <button onclick="router.loadRoute('')">Cancel</button>
+                <button>Add</button>  
+        `
     }
 ];
