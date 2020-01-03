@@ -50,37 +50,37 @@ const routes = [
                 </p>
                     <p>
                     <span>Number</span>
-                    <input type="text" class="text" value="253781"/>
+                    <input type="text" value="253781"/>
                 </p>
                 <h3>Key/Value Pairs</h3>
                 <ol>
                     <li>
-                        <input type="text" class="text"/>
-                        <input type="text" class="text"/>
+                        <input type="text"/>
+                        <input type="text"/>
                         <button>+</button>
                         <button>-</button>
                     </li>
                     <li>
-                        <input type="text" class="text"/>
-                        <input type="text" class="text"/>
+                        <input type="text"/>
+                        <input type="text"/>
                         <button>+</button>
                         <button>-</button>
                     </li>
                     <li>
-                        <input type="text" class="text"/>
-                        <input type="text" class="text"/>
+                        <input type="text"/>
+                        <input type="text"/>
                         <button>+</button>
                         <button>-</button>
                     </li>
                     <li>
-                        <input type="text" class="text"/>
-                        <input type="text" class="text"/>
+                        <input type="text"/>
+                        <input type="text"/>
                         <button>+</button>
                         <button>-</button>
                     </li>
                     <li>
-                        <input type="text" class="text"/>
-                        <input type="text" class="text"/>
+                        <input type="text"/>
+                        <input type="text"/>
                         <button>+</button>
                         <button>-</button>
                     </li>
@@ -95,41 +95,41 @@ const routes = [
                 <h1>Add Widget</h1>
                 <p>
                     <span>Name</span>
-                    <input type="text" class="text"/>
+                    <input type="text"/>
                 </p>
                     <p>
                     <span>Number</span>
-                    <input type="text" class="text"/>
+                    <input type="text"/>
                 </p>
                 <h3>Key/Value Pairs</h3>
                 <ol>
                     <li>
-                        <input type="text" class="text"/>
-                        <input type="text" class="text"/>
+                        <input type="text"/>
+                        <input type="text"/>
                         <button>+</button>
                         <button>-</button>
                     </li>
                     <li>
-                        <input type="text" class="text"/>
-                        <input type="text" class="text"/>
+                        <input type="text"/>
+                        <input type="text"/>
                         <button>+</button>
                         <button>-</button>
                     </li>
                     <li>
-                        <input type="text" class="text"/>
-                        <input type="text" class="text"/>
+                        <input type="text"/>
+                        <input type="text"/>
                         <button>+</button>
                         <button>-</button>
                     </li>
                     <li>
-                        <input type="text" class="text"/>
-                        <input type="text" class="text"/>
+                        <input type="text"/>
+                        <input type="text"/>
                         <button>+</button>
                         <button>-</button>
                     </li>
                     <li>
-                        <input type="text" class="text"/>
-                        <input type="text" class="text"/>
+                        <input type="text"/>
+                        <input type="text"/>
                         <button>+</button>
                         <button>-</button>
                     </li>
