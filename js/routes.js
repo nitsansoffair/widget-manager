@@ -95,14 +95,14 @@ const routes = [
                 <h1>Add Widget</h1>
                 <p>
                     <span>Name</span>
-                    <input type="text"/>
+                    <input name="name" type="text"/>
                 </p>
                     <p>
                     <span>Number</span>
-                    <input type="text"/>
+                    <input name="number" type="text"/>
                 </p>
                 <h3>Key/Value Pairs</h3>
-                <ol>
+                <ol name="pairs">
                     <li>
                         <input type="text"/>
                         <input type="text"/>
@@ -110,32 +110,32 @@ const routes = [
                         <button>-</button>
                     </li>
                     <li>
-                        <input type="text"/>
-                        <input type="text"/>
+                        <input name="" type="text"/>
+                        <input name="" type="text"/>
                         <button>+</button>
                         <button>-</button>
                     </li>
                     <li>
-                        <input type="text"/>
-                        <input type="text"/>
+                        <input name="" type="text"/>
+                        <input name="" type="text"/>
                         <button>+</button>
                         <button>-</button>
                     </li>
                     <li>
-                        <input type="text"/>
-                        <input type="text"/>
+                        <input name="" type="text"/>
+                        <input name="" type="text"/>
                         <button>+</button>
                         <button>-</button>
                     </li>
                     <li>
-                        <input type="text"/>
-                        <input type="text"/>
+                        <input name="" type="text"/>
+                        <input name="" type="text"/>
                         <button>+</button>
                         <button>-</button>
                     </li>
                 </ol>
                 <button onclick="router.loadRoute('')">Cancel</button>
-                <button>Add</button>  
+                <button onclick="store.add()">Add</button>  
         `
     }
 ];
