@@ -34,7 +34,7 @@ class Store {
         let objs = [];
 
         for(let i = 0; i <= this.id; i++){
-            const obj = this.fetch(`widget_${i.toString()}`);
+            const obj = this.fetch(i);
 
             if(obj){
                 objs = [
@@ -50,7 +50,7 @@ class Store {
     }
 
     fetch(id){
-        const obj = localStorage.getItem(id.toString());
+        const obj = localStorage.getItem(`widget_${id.toString()}`);
 
         if(obj){
             return JSON.parse(obj);
@@ -65,6 +65,6 @@ class Store {
     }
 
     delete(id){
-        return localStorage.removeItem(id.toString());
+        return localStorage.removeItem(`widget_${id.toString()}`);
     }
 }

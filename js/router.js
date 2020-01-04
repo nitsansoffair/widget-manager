@@ -8,6 +8,7 @@ class Router {
         const matchedRoute = this._matchUrlRoute(urlSegments);
 
         const url = `/${urlSegments.join('/')}`;
+
         history.pushState({}, '', url);
 
         const routerOutletElement = document.querySelector('[data-router-outlet]');
@@ -27,7 +28,9 @@ class Router {
                 return false;
             }
 
-            return routePathSegments.every((routePathSegment, i) => routePathSegment === urlSegments[i]);
+            return routePathSegments.every((routePathSegment, i) => {
+                return routePathSegment === urlSegments[i] || (routePathSegment === ":id" && Number(urlSegments[i]) >= 0);
+            });
         });
     }
 

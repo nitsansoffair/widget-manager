@@ -1,13 +1,12 @@
 const store = new Store();
 
 const widgets = store.fetchAllNames();
-console.log(widgets);
 
 const template = widgets && widgets.map(({ name, id }) => {
     return `
         <tr>
             <td>${name}</td>
-            <td><button onclick="router.loadRoute('detail/${id}')">Details</button></td>
+            <td><button onclick="router.loadRoute('detail', ${id})">Details</button></td>
             <td><button>Delete</button></td>
         </tr>`;
 });
@@ -26,12 +25,17 @@ const routes = [
         `
     },
     {
-        path: '/detail',
+        path: '/detail/:id',
         template: (id = null) => {
             const widget = store.fetch(id);
 
             if(widget){
-                const { name, number, pairs } = widget; // TODO - Inject pairs
+                const { name, number, pairs } = widget;
+
+                let pairsHtml = '';
+                for(let i = 0; i < pairs.length; i += 2){
+                    pairsHtml += `<li>${pairs[i]}: ${pairs[i + 1]}</li>`;
+                }
 
                 return `
                     <h1>${name} Details</h1>
@@ -39,64 +43,51 @@ const routes = [
                     <p>Number: ${number}</p>
                     <h3>Key/Value Pairs</h3>
                     <ol>
-                        <li>first: Teddy</li>
-                        <li>last: Bear</li>
-                        <li>color: brown</li>        
+                        ${pairsHtml}
                     </ol>               
-                    <button onclick="router.loadRoute('edit/${id}')">Edit</button>`
+                    <button onclick="router.loadRoute('edit', ${id})">Edit</button>`
             }
 
             return null;
         }
     },
     {
-        path: '/edit',
-        template: (id = null) => `
-                <h1>Widget 2 Edit</h1>
-                <p>
-                    <span>Name</span>
-                    <input type="text" class="text" value="Widget 2"/>
-                </p>
+        path: '/edit/:id',
+        template: (id = null) => {
+            const widget = store.fetch(id);
+
+            if (widget) {
+                const { id, name, number, pairs } = widget;
+
+                let pairsHtml = '';
+                for(let i = 0; i < pairs.length; i += 2){
+                    pairsHtml += `
+                                <li>
+                                    <input type="text" value="${pairs[i]}"/>
+                                    <input type="text" value="${pairs[i + 1]}"/>
+                                    <button>+</button>
+                                    <button>-</button>
+                                </li>`;
+                }
+
+                return `
+                    <h1>${name} Edit</h1>
                     <p>
-                    <span>Number</span>
-                    <input type="text" value="253781"/>
-                </p>
-                <h3>Key/Value Pairs</h3>
-                <ol>
-                    <li>
-                        <input type="text"/>
-                        <input type="text"/>
-                        <button>+</button>
-                        <button>-</button>
-                    </li>
-                    <li>
-                        <input type="text"/>
-                        <input type="text"/>
-                        <button>+</button>
-                        <button>-</button>
-                    </li>
-                    <li>
-                        <input type="text"/>
-                        <input type="text"/>
-                        <button>+</button>
-                        <button>-</button>
-                    </li>
-                    <li>
-                        <input type="text"/>
-                        <input type="text"/>
-                        <button>+</button>
-                        <button>-</button>
-                    </li>
-                    <li>
-                        <input type="text"/>
-                        <input type="text"/>
-                        <button>+</button>
-                        <button>-</button>
-                    </li>
-                </ol>
-                <button onclick="router.loadRoute('')">Cancel</button>
-                <button>Save</button>
-`
+                        <span>Name</span>
+                        <input type="text" name="name" value="${name}"/>
+                    </p>
+                        <p>
+                        <span>Number</span>
+                        <input type="text" name="number" value="${number}"/>
+                    </p>
+                    <h3>Key/Value Pairs</h3>
+                    <ol>
+                        ${pairsHtml}
+                    </ol>
+                    <button onclick="router.loadRoute('')">Cancel</button>
+                    <button onclick="store.edit(${id})">Save</button>`;
+            }
+        }
     },
     {
         path: '/add',
