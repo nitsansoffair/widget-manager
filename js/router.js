@@ -11,7 +11,12 @@ class Router {
         history.pushState({}, '', url);
 
         const routerOutletElement = document.querySelector('[data-router-outlet]');
-        routerOutletElement.innerHTML = matchedRoute.template;
+
+        if(urlSegments.length === 2){
+            routerOutletElement.innerHTML = matchedRoute.template(urlSegments[1]);
+        } else {
+            routerOutletElement.innerHTML = matchedRoute.template();
+        }
     }
 
     _matchUrlRoute(urlSegments){

@@ -1,48 +1,57 @@
+const store = new Store();
+
+const widgets = store.fetchAllNames();
+console.log(widgets);
+
+const template = widgets && widgets.map(({ name, id }) => {
+    return `
+        <tr>
+            <td>${name}</td>
+            <td><button onclick="router.loadRoute('detail/${id}')">Details</button></td>
+            <td><button>Delete</button></td>
+        </tr>`;
+});
+
 const routes = [
     {
         path: '/',
-        template: `
+        template: () => `
             <h1>Widget summary</h1>
             <table>
                 <tbody>
-                    <tr>
-                        <td>Widget 1</td>
-                        <td><button onclick="router.loadRoute('detail')">Details</button></td>
-                        <td><button>Delete</button></td>
-                    </tr>
-                    <tr>
-                      <td>Widget 2</td>
-                      <td><button onclick="router.loadRoute('detail')">Details</button></td>
-                      <td><button>Delete</button></td>
-                    </tr>
-                    <tr>
-                      <td>Widget 3</td>
-                      <td><button onclick="router.loadRoute('detail')">Details</button></td>
-                      <td><button>Delete</button></td>
-                    </tr>
-                  </tbody>
+                    ${template}
+                </tbody>
             </table>
             <button onclick="router.loadRoute('add')">Add Widget</button>
         `
     },
     {
         path: '/detail',
-        template: `
-                <h1>Widget 2 Details</h1>
-                <p>Name: Widget 2</p>
-                <p>Number: Two hundred fifty three thousands</p>
-                <h3>Key/Value Pairs</h3>
-                <ol>
-                    <li>first: Teddy</li>
-                    <li>last: Bear</li>
-                    <li>color: brown</li>        
-                </ol>               
-                <button onclick="router.loadRoute('edit')">Edit</button>
-`
+        template: (id = null) => {
+            const widget = store.fetch(id);
+
+            if(widget){
+                const { name, number, pairs } = widget; // TODO - Inject pairs
+
+                return `
+                    <h1>${name} Details</h1>
+                    <p>Name: ${name}</p>
+                    <p>Number: ${number}</p>
+                    <h3>Key/Value Pairs</h3>
+                    <ol>
+                        <li>first: Teddy</li>
+                        <li>last: Bear</li>
+                        <li>color: brown</li>        
+                    </ol>               
+                    <button onclick="router.loadRoute('edit/${id}')">Edit</button>`
+            }
+
+            return null;
+        }
     },
     {
         path: '/edit',
-        template: `
+        template: (id = null) => `
                 <h1>Widget 2 Edit</h1>
                 <p>
                     <span>Name</span>
@@ -91,7 +100,7 @@ const routes = [
     },
     {
         path: '/add',
-        template: `
+        template: () => `
                 <h1>Add Widget</h1>
                 <p>
                     <span>Name</span>
@@ -102,34 +111,34 @@ const routes = [
                     <input name="number" type="text"/>
                 </p>
                 <h3>Key/Value Pairs</h3>
-                <ol name="pairs">
+                <ol>
                     <li>
-                        <input type="text"/>
-                        <input type="text"/>
+                        <input type="text" name="keyval"/>
+                        <input type="text" name="keyval"/>
                         <button>+</button>
                         <button>-</button>
                     </li>
                     <li>
-                        <input name="" type="text"/>
-                        <input name="" type="text"/>
+                        <input type="text" name="keyval"/>
+                        <input type="text" name="keyval"/>
                         <button>+</button>
                         <button>-</button>
                     </li>
                     <li>
-                        <input name="" type="text"/>
-                        <input name="" type="text"/>
+                        <input type="text" name="keyval"/>
+                        <input type="text" name="keyval"/>
                         <button>+</button>
                         <button>-</button>
                     </li>
                     <li>
-                        <input name="" type="text"/>
-                        <input name="" type="text"/>
+                        <input type="text" name="keyval"/>
+                        <input type="text" name="keyval"/>
                         <button>+</button>
                         <button>-</button>
                     </li>
                     <li>
-                        <input name="" type="text"/>
-                        <input name="" type="text"/>
+                        <input type="text" name="keyval"/>
+                        <input type="text" name="keyval"/>
                         <button>+</button>
                         <button>-</button>
                     </li>
