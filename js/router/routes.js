@@ -42,7 +42,7 @@ const routes = [
                 return `
                     <h2>Details</h2>
                     <div>Name: ${name}</div>
-                    <div>Number: ${number}</div>
+                    <div>Number: ${numToWords(number)}</div>
                     <h5>Key/Value Pairs</h5>
                     <ol>
                         ${pairsHtml}
@@ -145,3 +145,29 @@ const routes = [
         }
     }
 ];
+
+const unity = ['','one ','two ','three ','four ', 'five ','six ','seven ','eight ','nine ','ten ','eleven ','twelve ','thirteen ','fourteen ','fifteen ','sixteen ','seventeen ','eighteen ','nineteen '];
+
+const dozens = ['', '', 'twenty','thirty','forty','fifty', 'sixty','seventy','eighty','ninety'];
+
+const numToWords = (num) => {
+    if ((num = num.toString()).length > 9){
+        return 'overflow';
+    }
+
+    const n = ('000000000' + num).substr(-9).match(/^(\d{2})(\d{2})(\d{2})(\d{1})(\d{2})$/);
+
+    if (!n) {
+        return;
+    }
+
+    let str = '';
+
+    str += (n[1] != 0) ? (unity[Number(n[1])] || dozens[n[1][0]] + ' ' + unity[n[1][1]]) + 'crore ' : '';
+    str += (n[2] != 0) ? (unity[Number(n[2])] || dozens[n[2][0]] + ' ' + unity[n[2][1]]) + 'lakh ' : '';
+    str += (n[3] != 0) ? (unity[Number(n[3])] || dozens[n[3][0]] + ' ' + unity[n[3][1]]) + 'thousand ' : '';
+    str += (n[4] != 0) ? (unity[Number(n[4])] || dozens[n[4][0]] + ' ' + unity[n[4][1]]) + 'hundred ' : '';
+    str += (n[5] != 0) ? ((str !== '') ? 'and ' : '') + (unity[Number(n[5])] || dozens[n[5][0]] + ' ' + unity[n[5][1]]) + 'only ' : '';
+
+    return str;
+};
