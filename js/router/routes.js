@@ -1,4 +1,5 @@
 const store = new Store();
+const ui = new Ui();
 
 const widgets = store.fetchAllNames();
 
@@ -7,7 +8,7 @@ const template = widgets && widgets.map(({ name, id }) => {
         <tr>
             <td>${name}</td>
             <td><button onclick="router.loadRoute('detail', ${id})">Details</button></td>
-            <td><button>Delete</button></td>
+            <td><button onclick="ui.openDeleteModal(${id})">Delete</button></td>
         </tr>`;
 });
 
@@ -65,8 +66,8 @@ const routes = [
                                 <li>
                                     <input type="text" value="${pairs[i]}"/>
                                     <input type="text" value="${pairs[i + 1]}"/>
-                                    <button onclick="store.addPair()">+</button>
-                                    <button onclick="store.removePair()">-</button>
+                                    <button onclick="ui.addPair()">+</button>
+                                    <button onclick="ui.removePair()">-</button>
                                 </li>`;
                 }
 
@@ -99,8 +100,8 @@ const routes = [
                      <li>
                         <input type="text" name="keyval"/>
                         <input type="text" name="keyval"/>
-                        <button onclick="store.addPair()">+</button>
-                        <button onclick="store.removePair()">-</button>
+                        <button onclick="ui.addPair()">+</button>
+                        <button onclick="ui.removePair()">-</button>
                     </li>`;
             }
 

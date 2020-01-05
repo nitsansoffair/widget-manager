@@ -67,28 +67,4 @@ class Store {
     delete(id){
         return localStorage.removeItem(`widget_${id.toString()}`);
     }
-
-    addPair(){
-        const pairs = document.getElementsByName('pairs')[0];
-        const numOfPairs = pairs.children.length - 1;
-
-        if(numOfPairs < 10){
-            pairs.innerHTML += `
-                        <li>
-                             <input type="text" name="keyval"/>
-                            <input type="text" name="keyval"/>
-                            <button onclick="store.addPair()">+</button>
-                            <button onclick="store.removePair()">-</button>
-                        </li>`;
-        }
-    }
-
-    removePair(){
-        const pairs = document.getElementsByName('pairs')[0];
-        const numOfPairs = pairs.children.length - 1;
-
-        if(numOfPairs > 1){
-            pairs.innerHTML = pairs.innerHTML.slice(0, pairs.innerHTML.lastIndexOf('<li>'));
-        }
-    }
 }

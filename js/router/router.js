@@ -18,17 +18,17 @@ class Router {
 
         history.pushState({}, '', url);
 
-        const routerOutletElement = document.querySelector('[data-router-outlet]');
-        routerOutletElement.innerHTML = '';
+        const rootPage = document.querySelector('[root-page]');
+        rootPage.innerHTML = '';
 
         this.currentRoutes.forEach((url) => {
             const urlSegments = url.slice(1).split('/');
             const matchedRoute = this._matchUrlRoute(urlSegments);
 
             if(urlSegments.length === 2){
-                routerOutletElement.innerHTML += matchedRoute.template(urlSegments[1]);
+                rootPage.innerHTML += matchedRoute.template(urlSegments[1]);
             } else {
-                routerOutletElement.innerHTML += matchedRoute.template();
+                rootPage.innerHTML += matchedRoute.template();
             }
         });
     }
