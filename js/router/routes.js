@@ -121,7 +121,7 @@ const routes = [
 
             return `
                 <h2>Add</h2>
-                <form>
+                <form style="margin-bottom: 5px">
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Name</label>
                         <div class="col-sm-10">

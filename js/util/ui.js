@@ -57,6 +57,14 @@ class Ui {
         document.querySelector('[root-page]').style.opacity = '1';
     }
 
+    openError(){
+        document.querySelector('[root-page]').innerHTML += `
+                <div error class="alert alert-danger" role="alert">
+                    name already exists
+                </div>
+        `;
+    }
+
     delete(id){
         store.delete(id);
         this.closeDeleteModal();

@@ -5,6 +5,7 @@ class Store {
 
     add(id = null){
         let pairs = [];
+        let error = false;
 
         document.getElementsByName('keyval').forEach(({ value }) => {
             if(value !== ""){
@@ -15,6 +16,22 @@ class Store {
             }
         });
 
+        const names = this.fetchAllNames();
+        const currName = document.getElementsByName('name')[0].value;
+
+        if(names.length > 0){
+            names.forEach(({ name }) => {
+                if(name === currName){
+                    ui.openError();
+                    error = true;
+                }
+            });
+        }
+
+        if(error){
+            return;
+        }
+
         if(!id){
             id = ++this.id;
             localStorage.setItem('widget_id', id.toString());
@@ -22,7 +39,7 @@ class Store {
 
         const widget = {
             id,
-            name: document.getElementsByName('name')[0].value,
+            name: currName,
             number: document.getElementsByName('number')[0].value,
             pairs
         };
