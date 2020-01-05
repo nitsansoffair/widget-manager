@@ -65,8 +65,8 @@ const routes = [
                                 <li>
                                     <input type="text" value="${pairs[i]}"/>
                                     <input type="text" value="${pairs[i + 1]}"/>
-                                    <button>+</button>
-                                    <button>-</button>
+                                    <button onclick="store.addPair()">+</button>
+                                    <button onclick="store.removePair()">-</button>
                                 </li>`;
                 }
 
@@ -81,7 +81,7 @@ const routes = [
                         <input type="text" name="number" value="${number}"/>
                     </p>
                     <h3>Key/Value Pairs</h3>
-                    <ol>
+                    <ol name="pairs">
                         ${pairsHtml}
                     </ol>
                     <button onclick="router.loadRoute('')">Cancel</button>
@@ -91,7 +91,20 @@ const routes = [
     },
     {
         path: '/add',
-        template: () => `
+        template: () => {
+            let pairsHtml = ``;
+
+            for(let i = 0; i < 5; i++){
+                pairsHtml += `
+                     <li>
+                        <input type="text" name="keyval"/>
+                        <input type="text" name="keyval"/>
+                        <button onclick="store.addPair()">+</button>
+                        <button onclick="store.removePair()">-</button>
+                    </li>`;
+            }
+
+            return `
                 <h1>Add Widget</h1>
                 <p>
                     <span>Name</span>
@@ -102,40 +115,12 @@ const routes = [
                     <input name="number" type="text"/>
                 </p>
                 <h3>Key/Value Pairs</h3>
-                <ol>
-                    <li>
-                        <input type="text" name="keyval"/>
-                        <input type="text" name="keyval"/>
-                        <button>+</button>
-                        <button>-</button>
-                    </li>
-                    <li>
-                        <input type="text" name="keyval"/>
-                        <input type="text" name="keyval"/>
-                        <button>+</button>
-                        <button>-</button>
-                    </li>
-                    <li>
-                        <input type="text" name="keyval"/>
-                        <input type="text" name="keyval"/>
-                        <button>+</button>
-                        <button>-</button>
-                    </li>
-                    <li>
-                        <input type="text" name="keyval"/>
-                        <input type="text" name="keyval"/>
-                        <button>+</button>
-                        <button>-</button>
-                    </li>
-                    <li>
-                        <input type="text" name="keyval"/>
-                        <input type="text" name="keyval"/>
-                        <button>+</button>
-                        <button>-</button>
-                    </li>
+                <ol name="pairs">
+                    ${pairsHtml}
                 </ol>
                 <button onclick="router.loadRoute('')">Cancel</button>
                 <button onclick="store.add()">Add</button>  
-        `
+        `;
+        }
     }
 ];
