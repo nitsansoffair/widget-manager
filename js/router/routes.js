@@ -2,29 +2,29 @@ const store = new Store();
 
 const ui = new Ui();
 
-const widgets = store.fetchAllNames();
-
-const template = widgets && widgets.map(({ name, id }) => {
-    return `
-        <tr>
-            <td>${name}</td>
-            <td><button onclick="router.loadRoute('detail', ${id})">Details</button></td>
-            <td><button onclick="ui.openDeleteModal(${id})">Delete</button></td>
-        </tr>`;
-});
-
 const routes = [
     {
         path: '/',
-        template: () => `
-            <h1>Widget summary</h1>
-            <table>
-                <tbody>
-                    ${template}
-                </tbody>
-            </table>
-            <button onclick="router.loadRoute('add')">Add Widget</button>
-        `
+        template: () => {
+            const widgets = store.fetchAllNames();
+
+            const template = widgets && widgets.map(({ name, id }) => `
+                    <tr>
+                        <td>${name}</td>
+                        <td><button class="btn btn-light" onclick="router.loadRoute('detail', ${id})">Details</button></td>
+                        <td><button class="btn btn-danger" onclick="ui.openDeleteModal(${id})">Delete</button></td>
+                    </tr>`
+            );
+
+            return `
+                <h1>Widget summary</h1>
+                <table>
+                    <tbody>
+                        ${template}
+                    </tbody>
+                </table>
+                <button class="btn btn-primary" onclick="router.loadRoute('add')">Add Widget</button>`;
+        }
     },
     {
         path: '/detail/:id',
@@ -47,7 +47,7 @@ const routes = [
                     <ol>
                         ${pairsHtml}
                     </ol>               
-                    <button onclick="router.loadRoute('edit', ${id})">Edit</button>`;
+                    <button class="btn btn-light" onclick="router.loadRoute('edit', ${id})">Edit</button>`;
             }
 
             return null;
@@ -64,11 +64,11 @@ const routes = [
                 let pairsHtml = '';
                 for(let i = 0; i < pairs.length; i += 2){
                     pairsHtml += `
-                                <li>
+                                <li style="margin-bottom: 5px">
                                     <input type="text" name="keyval" value="${pairs[i]}"/>
                                     <input type="text" name="keyval" value="${pairs[i + 1]}"/>
-                                    <button onclick="ui.addPair()">+</button>
-                                    <button onclick="ui.removePair()">-</button>
+                                    <button class="btn btn-warning" onclick="ui.addPair()">+</button>
+                                    <button class="btn btn-warning" onclick="ui.removePair()">-</button>
                                 </li>`;
                 }
 
@@ -86,8 +86,8 @@ const routes = [
                     <ol name="pairs">
                         ${pairsHtml}
                     </ol>
-                    <button onclick="router.loadRoute('')">Cancel</button>
-                    <button onclick="store.edit(${id})">Save</button>`;
+                    <button class="btn btn-danger" onclick="router.loadRoute('')">Cancel</button>
+                    <button class="btn btn-primary" onclick="store.edit(${id})">Save</button>`;
             }
         }
     },
@@ -98,11 +98,11 @@ const routes = [
 
             for(let i = 0; i < 5; i++){
                 pairsHtml += `
-                     <li>
+                     <li style="margin-bottom: 5px">
                         <input type="text" name="keyval"/>
                         <input type="text" name="keyval"/>
-                        <button onclick="ui.addPair()">+</button>
-                        <button onclick="ui.removePair()">-</button>
+                        <button class="btn btn-warning" onclick="ui.addPair()">+</button>
+                        <button class="btn btn-warning" onclick="ui.removePair()">-</button>
                     </li>`;
             }
 
@@ -120,8 +120,8 @@ const routes = [
                 <ol name="pairs">
                     ${pairsHtml}
                 </ol>
-                <button onclick="router.loadRoute('')">Cancel</button>
-                <button onclick="store.add()">Add</button>  
+                <button class="btn btn-danger" onclick="router.loadRoute('')">Cancel</button>
+                <button class="btn btn-primary" onclick="store.add()">Add</button>  
         `;
         }
     }

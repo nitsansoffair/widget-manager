@@ -7,11 +7,11 @@ class Ui {
 
         if(numOfPairs < 10){
             pairs.innerHTML += `
-                        <li>
+                        <li style="margin-bottom: 5px">
                             <input type="text" name="keyval"/>
                             <input type="text" name="keyval"/>
-                            <button onclick="ui.addPair()">+</button>
-                            <button onclick="ui.removePair()">-</button>
+                            <button class="btn btn-warning" onclick="ui.addPair()">+</button>
+                            <button class="btn btn-warning" onclick="ui.removePair()">-</button>
                         </li>`;
         }
     }
@@ -21,7 +21,7 @@ class Ui {
         const numOfPairs = pairs.children.length - 1;
 
         if(numOfPairs > 1){
-            pairs.innerHTML = pairs.innerHTML.slice(0, pairs.innerHTML.lastIndexOf('<li>'));
+            pairs.innerHTML = pairs.innerHTML.slice(0, pairs.innerHTML.lastIndexOf('<li'));
         }
     }
 
