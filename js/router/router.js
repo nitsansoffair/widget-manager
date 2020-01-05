@@ -29,6 +29,10 @@ class Router {
                 rootPage.innerHTML += matchedRoute.template();
             }
         });
+
+        if(url === '/'){
+            localStorage.removeItem('widget_error');
+        }
     }
 
     closeView(route){
