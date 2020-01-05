@@ -40,6 +40,9 @@ const routes = [
                 }
 
                 return `
+                    <button onclick="router.closeView('detail')" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                     <h2>Details</h2>
                     <div>Name: ${name}</div>
                     <div>Number: ${numToWords(number)}</div>

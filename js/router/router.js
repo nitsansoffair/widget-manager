@@ -31,6 +31,14 @@ class Router {
         });
     }
 
+    closeView(route){
+        this.currentRoutes = [
+            ...this.currentRoutes.filter((str) => str.indexOf(route) === -1)
+        ];
+
+        this.loadRoute('');
+    }
+
     _matchUrlRoute(urlSegments){
         return this.routes.find((route) => {
             const routePathSegments = route.path.split('/').slice(1);
