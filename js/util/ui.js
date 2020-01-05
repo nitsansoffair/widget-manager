@@ -32,7 +32,7 @@ class Ui {
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title">Delete</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <button onclick="ui.closeDeleteModal()" type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
@@ -41,7 +41,7 @@ class Ui {
                         </div>
                         <div class="modal-footer">
                             <button onclick="ui.closeDeleteModal()" type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                            <button onclick="ui.delete(${id})" type="button" class="btn btn-primary">Delete</button>
+                            <button onclick="ui.delete(${id})" type="button" class="btn btn-danger">Delete</button>
                         </div>
                     </div>
                 </div>

@@ -17,13 +17,13 @@ const routes = [
             );
 
             return `
-                <h1>Widget summary</h1>
-                <table>
+                <h2>Widget summary</h2>
+                <table class="table">
                     <tbody>
                         ${template}
                     </tbody>
                 </table>
-                <button class="btn btn-primary" onclick="router.loadRoute('add')">Add Widget</button>`;
+                <button style="margin-bottom: 15px" class="btn btn-primary" onclick="router.loadRoute('add')">Add Widget</button>`;
         }
     },
     {
@@ -40,13 +40,13 @@ const routes = [
                 }
 
                 return `
-                    <h1>${name} Details</h1>
-                    <p>Name: ${name}</p>
-                    <p>Number: ${number}</p>
-                    <h3>Key/Value Pairs</h3>
+                    <h2>Details</h2>
+                    <div>Name: ${name}</div>
+                    <div>Number: ${number}</div>
+                    <h5>Key/Value Pairs</h5>
                     <ol>
                         ${pairsHtml}
-                    </ol>               
+                    </ol>     
                     <button class="btn btn-light" onclick="router.loadRoute('edit', ${id})">Edit</button>`;
             }
 
@@ -73,21 +73,31 @@ const routes = [
                 }
 
                 return `
-                    <h1>${name} Edit</h1>
-                    <p>
-                        <span>Name</span>
-                        <input type="text" name="name" value="${name}"/>
-                    </p>
-                        <p>
-                        <span>Number</span>
-                        <input type="text" name="number" value="${number}"/>
-                    </p>
-                    <h3>Key/Value Pairs</h3>
-                    <ol name="pairs">
-                        ${pairsHtml}
-                    </ol>
-                    <button class="btn btn-danger" onclick="router.loadRoute('')">Cancel</button>
-                    <button class="btn btn-primary" onclick="store.edit(${id})">Save</button>`;
+                    <h2>Edit</h2>
+                    <form>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Name</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="name" value="${name}"/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Number</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="number" value="${number}"/>
+                            </div>
+                        </div>
+                        <fieldset class="form-group">
+                            <h5>Key/Value Pairs</h5>
+                            <div class="row">
+                                    <ol name="pairs">
+                                        ${pairsHtml}
+                                     </ol>
+                            </div>
+                        </fieldset>
+                        <button class="btn btn-danger" onclick="router.loadRoute('')">Cancel</button>
+                        <button class="btn btn-primary" onclick="store.edit(${id})">Save</button>
+                    </form>`;
             }
         }
     },
@@ -107,22 +117,31 @@ const routes = [
             }
 
             return `
-                <h1>Add Widget</h1>
-                <p>
-                    <span>Name</span>
-                    <input name="name" type="text"/>
-                </p>
-                    <p>
-                    <span>Number</span>
-                    <input name="number" type="text"/>
-                </p>
-                <h3>Key/Value Pairs</h3>
-                <ol name="pairs">
-                    ${pairsHtml}
-                </ol>
-                <button class="btn btn-danger" onclick="router.loadRoute('')">Cancel</button>
-                <button class="btn btn-primary" onclick="store.add()">Add</button>  
-        `;
+                <h2>Add</h2>
+                <form>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="name"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Number</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="number"/>
+                        </div>
+                    </div>
+                    <fieldset class="form-group">
+                        <h5>Key/Value Pairs</h5>
+                        <div class="row">
+                            <ol name="pairs">
+                                ${pairsHtml}
+                             </ol>
+                        </div>
+                    </fieldset>
+                    <button class="btn btn-danger" onclick="router.loadRoute('')">Cancel</button>
+                    <button class="btn btn-primary" onclick="store.add()">Add</button>  
+                </form>`;
         }
     }
 ];
