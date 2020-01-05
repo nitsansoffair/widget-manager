@@ -16,23 +16,36 @@ class Store {
             }
         });
 
-        const names = this.fetchAllNames();
-        const currName = document.getElementsByName('name')[0].value;
-
-        if(names.length > 0){
-            names.forEach(({ name }) => {
-                if(name === currName){
-                    ui.openError();
-                    error = true;
-                }
-            });
+        for(let i = 0; i < pairs.length; i += 2){
+            if(pairs[i] && !pairs[i + 1]){
+                error = true;
+                ui.setEmptykeyError(i / 2);
+                break;
+            }
         }
 
         if(error){
             return;
         }
 
+        const currName = document.getElementsByName('name')[0].value;
+
         if(!id){
+            const names = this.fetchAllNames();
+
+            if(names.length > 0){
+                names.forEach(({ name }) => {
+                    if(name === currName){
+                        ui.openError();
+                        error = true;
+                    }
+                });
+            }
+
+            if(error){
+                return;
+            }
+
             id = ++this.id;
             localStorage.setItem('widget_id', id.toString());
         }

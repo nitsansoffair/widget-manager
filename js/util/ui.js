@@ -65,6 +65,15 @@ class Ui {
         `;
     }
 
+    setEmptykeyError(i){
+        localStorage.setItem('widget_error', i.toString());
+    }
+
+    cleanEmptykeyError(){
+        localStorage.removeItem('widget_error');
+        router.loadRoute('add');
+    }
+
     delete(id){
         store.delete(id);
         this.closeDeleteModal();

@@ -108,15 +108,32 @@ const routes = [
         path: '/add',
         template: () => {
             let pairsHtml = ``;
+            const error = localStorage.getItem('widget_error');
 
             for(let i = 0; i < 5; i++){
-                pairsHtml += `
+                if(error && Number(error) === i){
+                    pairsHtml += `
+                     <li style="margin-bottom: 5px">
+                        <input onclick="ui.cleanEmptykeyError()" type="text" style="outline: red solid thin" name="keyval"/>
+                        <input type="text" name="keyval"/>
+                        <button class="btn btn-warning" onclick="ui.addPair()">+</button>
+                        <button class="btn btn-warning" onclick="ui.removePair()">-</button>
+                    </li>`;
+                } else {
+                    pairsHtml += `
                      <li style="margin-bottom: 5px">
                         <input type="text" name="keyval"/>
                         <input type="text" name="keyval"/>
                         <button class="btn btn-warning" onclick="ui.addPair()">+</button>
                         <button class="btn btn-warning" onclick="ui.removePair()">-</button>
                     </li>`;
+                }
+            }
+
+            let add = '<button add class="btn btn-primary" onclick="store.add()">Add</button>';
+
+            if(error){
+                add = '<button add class="btn btn-primary" disabled onclick="store.add()">Add</button>';
             }
 
             return `
@@ -143,7 +160,7 @@ const routes = [
                         </div>
                     </fieldset>
                     <button class="btn btn-danger" onclick="router.loadRoute('')">Cancel</button>
-                    <button class="btn btn-primary" onclick="store.add()">Add</button>  
+                    ${add}  
                 </form>`;
         }
     }
