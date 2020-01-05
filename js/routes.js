@@ -45,7 +45,7 @@ const routes = [
                     <ol>
                         ${pairsHtml}
                     </ol>               
-                    <button onclick="router.loadRoute('edit', ${id})">Edit</button>`
+                    <button onclick="router.loadRoute('edit', ${id})">Edit</button>`;
             }
 
             return null;
