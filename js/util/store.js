@@ -28,7 +28,7 @@ class Store {
         };
 
         localStorage.setItem(`widget_${id}`, JSON.stringify(widget));
-        this.sendToHomePage();
+        router.loadRoute('');
     }
 
     fetchAllNames(){
@@ -66,12 +66,6 @@ class Store {
 
     delete(id){
         localStorage.removeItem(`widget_${id.toString()}`);
-        this.sendToHomePage();
-    }
-
-    sendToHomePage(){
-        window.location.replace(ROOT_URL);
+        router.loadRoute('');
     }
 }
-
-const ROOT_URL = 'http://localhost:8080/';
