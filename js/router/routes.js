@@ -64,15 +64,40 @@ const routes = [
             if (widget) {
                 const { id, name, number, pairs } = widget;
 
+                const error = localStorage.getItem('widget_error');
                 let pairsHtml = '';
-                for(let i = 0; i < pairs.length; i += 2){
-                    pairsHtml += `
+
+                for(let i = 0; i < Math.max(pairs.length, 1); i += 2){
+                    const values = [
+                        pairs[i] ? pairs[i] : '',
+                        pairs[i + 1] ? pairs[i + 1] : ''
+                    ];
+
+                    if(error && Number(error) === i){
+                        pairsHtml += `     
                                 <li style="margin-bottom: 5px">
-                                    <input type="text" name="keyval" value="${pairs[i]}"/>
-                                    <input type="text" name="keyval" value="${pairs[i + 1]}"/>
+                                    <input onclick="ui.cleanEmptykeyError('edit', ${id})" 
+                                        style="outline: red solid thin" type="text" name="keyval" value="${values[0]}"
+                                    />
+                                    <input type="text" name="keyval" value="${values[1]}"/>
                                     <button class="btn btn-warning" onclick="ui.addPair()">+</button>
                                     <button class="btn btn-warning" onclick="ui.removePair()">-</button>
                                 </li>`;
+                    } else {
+                        pairsHtml += `
+                                <li style="margin-bottom: 5px">
+                                    <input type="text" name="keyval" value="${values[0]}"/>
+                                    <input type="text" name="keyval" value="${values[1]}"/>
+                                    <button class="btn btn-warning" onclick="ui.addPair()">+</button>
+                                    <button class="btn btn-warning" onclick="ui.removePair()">-</button>
+                                </li>`;
+                    }
+                }
+
+                let save = `<button class="btn btn-primary" onclick="store.edit(${id})">Save</button>`;
+
+                if(error){
+                    save = `<button class="btn btn-primary" disabled onclick="store.edit(${id})">Save</button>`;
                 }
 
                 return `
@@ -93,13 +118,13 @@ const routes = [
                         <fieldset class="form-group">
                             <h5>Key/Value Pairs</h5>
                             <div class="row">
-                                    <ol name="pairs">
-                                        ${pairsHtml}
-                                     </ol>
+                                <ol name="pairs">
+                                    ${pairsHtml}
+                                 </ol>
                             </div>
                         </fieldset>
                         <button class="btn btn-danger" onclick="router.loadRoute('')">Cancel</button>
-                        <button class="btn btn-primary" onclick="store.edit(${id})">Save</button>
+                        ${save}
                     </form>`;
             }
         }
@@ -111,10 +136,10 @@ const routes = [
             const error = localStorage.getItem('widget_error');
 
             for(let i = 0; i < 5; i++){
-                if(error && Number(error) === i){
+                if(error && Number(error) / 2 === i){
                     pairsHtml += `
                      <li style="margin-bottom: 5px">
-                        <input onclick="ui.cleanEmptykeyError()" type="text" style="outline: red solid thin" name="keyval"/>
+                        <input onclick="ui.cleanEmptykeyError('add')" type="text" style="outline: red solid thin" name="keyval"/>
                         <input type="text" name="keyval"/>
                         <button class="btn btn-warning" onclick="ui.addPair()">+</button>
                         <button class="btn btn-warning" onclick="ui.removePair()">-</button>

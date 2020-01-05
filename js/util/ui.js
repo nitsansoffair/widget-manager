@@ -5,7 +5,7 @@ class Ui {
         const pairs = document.getElementsByName('pairs')[0];
         const numOfPairs = pairs.children.length - 1;
 
-        if(numOfPairs < 10){
+        if(numOfPairs < 9){
             pairs.innerHTML += `
                         <li style="margin-bottom: 5px">
                             <input type="text" name="keyval"/>
@@ -20,7 +20,7 @@ class Ui {
         const pairs = document.getElementsByName('pairs')[0];
         const numOfPairs = pairs.children.length - 1;
 
-        if(numOfPairs > 1){
+        if(numOfPairs > 0){
             pairs.innerHTML = pairs.innerHTML.slice(0, pairs.innerHTML.lastIndexOf('<li'));
         }
     }
@@ -69,9 +69,9 @@ class Ui {
         localStorage.setItem('widget_error', i.toString());
     }
 
-    cleanEmptykeyError(){
+    cleanEmptykeyError(...url){
         localStorage.removeItem('widget_error');
-        router.loadRoute('add');
+        router.loadRoute(...url);
     }
 
     delete(id){

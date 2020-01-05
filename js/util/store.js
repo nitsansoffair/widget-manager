@@ -19,7 +19,7 @@ class Store {
         for(let i = 0; i < pairs.length; i += 2){
             if(pairs[i] && !pairs[i + 1]){
                 error = true;
-                ui.setEmptykeyError(i / 2);
+                ui.setEmptykeyError(i);
                 break;
             }
         }
