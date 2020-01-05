@@ -28,6 +28,7 @@ class Store {
         };
 
         localStorage.setItem(`widget_${id}`, JSON.stringify(widget));
+        this.sendToHomePage();
     }
 
     fetchAllNames(){
@@ -60,11 +61,17 @@ class Store {
     }
 
     edit(id){
-        this.delete(id);
         this.add(id);
     }
 
     delete(id){
-        return localStorage.removeItem(`widget_${id.toString()}`);
+        localStorage.removeItem(`widget_${id.toString()}`);
+        this.sendToHomePage();
+    }
+
+    sendToHomePage(){
+        window.location.replace(ROOT_URL);
     }
 }
+
+const ROOT_URL = 'http://localhost:8080/';

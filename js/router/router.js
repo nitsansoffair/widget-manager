@@ -7,9 +7,8 @@ class Router {
     }
 
     loadRoute(...urlSegments){
-        const matchedRoute = this._matchUrlRoute(urlSegments);
-
         const url = `/${urlSegments.join('/')}`;
+        console.log(url);
 
         this.currentRoutes = removeDuplicates([
             ...this.currentRoutes.filter((str) => str.indexOf('detail') === -1 && str.indexOf('edit') === -1 && str.indexOf('add') === -1),

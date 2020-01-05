@@ -1,4 +1,5 @@
 const store = new Store();
+
 const ui = new Ui();
 
 const widgets = store.fetchAllNames();
@@ -64,8 +65,8 @@ const routes = [
                 for(let i = 0; i < pairs.length; i += 2){
                     pairsHtml += `
                                 <li>
-                                    <input type="text" value="${pairs[i]}"/>
-                                    <input type="text" value="${pairs[i + 1]}"/>
+                                    <input type="text" name="keyval" value="${pairs[i]}"/>
+                                    <input type="text" name="keyval" value="${pairs[i + 1]}"/>
                                     <button onclick="ui.addPair()">+</button>
                                     <button onclick="ui.removePair()">-</button>
                                 </li>`;
